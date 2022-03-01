@@ -9,7 +9,7 @@ import org.slf4j.LoggerFactory;
  * @date: 2022/3/1 21:53
  */
 public class SLF4JTest01 {
-
+    Logger logger = LoggerFactory.getLogger(SLF4JTest01.class);
     /*
         入门案例
             SLF4J对日志级别的划分
@@ -19,12 +19,21 @@ public class SLF4JTest01 {
      */
     @Test
     public void Test01(){
-        Logger logger = LoggerFactory.getLogger(SLF4JTest01.class);
         logger.trace("trace");
         logger.debug("debug");
         logger.info("info");
         logger.warn("warn");
         logger.error("error");
+    }
+
+    @Test
+    public void Test02(){
+        /*
+            输出动态信息
+            使用占位符来实现，可以动态地进行展示
+         */
+        String name = "猫羽雫";
+        logger.info("角色名字为:{}",name);
     }
 
 }
