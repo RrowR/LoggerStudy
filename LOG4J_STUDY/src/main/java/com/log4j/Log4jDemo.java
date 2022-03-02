@@ -103,18 +103,19 @@ public class Log4jDemo {
      *  设置layout输出格式
      *  org.apache.log4j.SimpleLayout
      *  org.apache.log4j.HTMLLayout
+     *      ...
      */
     @Test
     public void Test05(){
-        LogLog.setInternalDebugging(true);          // 一定要放到前面
+        //LogLog.setInternalDebugging(true);          // 一定要放到前面
         Logger logger = Logger.getLogger(Log4jDemo.class);
         new PatternLayout();
-        logger.fatal("fatal");
-        logger.error("error");
-        logger.warn("warn");
-        logger.info("info");
-        logger.debug("debug");
-        logger.trace("trace");
+        logger.fatal("fatal消息");
+        logger.error("error消息");
+        logger.warn("warn消息");
+        logger.info("info消息");
+        logger.debug("debug消息");
+        logger.trace("trace消息");
     }
 
 }
