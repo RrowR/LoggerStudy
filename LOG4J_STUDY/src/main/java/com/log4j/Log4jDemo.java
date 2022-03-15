@@ -100,16 +100,62 @@ public class Log4jDemo {
     }
 
     /**
-     *  设置layout输出格式
-     *  org.apache.log4j.SimpleLayout
-     *  org.apache.log4j.HTMLLayout
-     *      ...
+     * 设置layout输出格式
+     * org.apache.log4j.SimpleLayout
+     * org.apache.log4j.HTMLLayout
+     * ...
      */
     @Test
-    public void Test05(){
+    public void Test05() {
         //LogLog.setInternalDebugging(true);          // 一定要放到前面
         Logger logger = Logger.getLogger(Log4jDemo.class);
         new PatternLayout();
+        logger.fatal("fatal消息");
+        logger.error("error消息");
+        logger.warn("warn消息");
+        logger.info("info消息");
+        logger.debug("debug消息");
+        logger.trace("trace消息");
+    }
+
+    /*
+        日志记录到文件
+        FileAppender            记录到文件
+        RollingFileAppender     拆分记录到文件
+     */
+    @Test
+    public void Test06() {
+        Logger logger = Logger.getLogger(Log4jDemo.class);
+        for (int i = 0; i < 100; i++) {
+            logger.fatal("fatal消息");
+            logger.error("error消息");
+            logger.warn("warn消息");
+            logger.info("info消息");
+            logger.debug("debug消息");
+            logger.trace("trace消息");
+        }
+    }
+
+    /**
+     * DailyRollingFileAppender     按照天来进行拆分
+     */
+    @Test
+    public void Test07() {
+        Logger logger = Logger.getLogger(Log4jDemo.class);
+        logger.fatal("fatal消息");
+        logger.error("error消息");
+        logger.warn("warn消息");
+        logger.info("info消息");
+        logger.debug("debug消息");
+        logger.trace("trace消息");
+    }
+
+    /**
+     * 将日志输出到数据库中
+     */
+    @Test
+    public void Test08() {
+        Logger logger = Logger.getLogger(Log4jDemo.class);
         logger.fatal("fatal消息");
         logger.error("error消息");
         logger.warn("warn消息");
