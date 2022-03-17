@@ -3,6 +3,7 @@ package com.log4j;
 import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PatternLayout;
+import org.apache.log4j.PropertyConfigurator;
 import org.apache.log4j.helpers.LogLog;
 import org.junit.Test;
 
@@ -162,6 +163,33 @@ public class Log4jDemo {
         logger.info("info消息");
         logger.debug("debug消息");
         logger.trace("trace消息");
+    }
+
+    /**
+     * 自定义日志
+     * com.log4j.Log4jDemo
+     * com.log4j        上层
+     * ...
+     * com              顶级也是可以的
+     */
+    @Test
+    public void Test09(){
+        Logger logger = Logger.getLogger(Log4jDemo.class);
+        logger.fatal("fatal消息");
+        logger.error("error消息");
+        logger.warn("warn消息");
+        logger.info("info消息");
+        logger.debug("debug消息");
+        logger.trace("trace消息");
+
+        // 配置的是apache的
+        Logger logger1 = Logger.getLogger(Logger.class);
+        logger1.fatal("fatal消息---------");
+        logger1.error("error消息---------");
+        logger1.warn("warn消息---------");
+        logger1.info("info消息---------");
+        logger1.debug("debug消息---------");
+        logger1.trace("trace消息---------");
     }
 
 }
