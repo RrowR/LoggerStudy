@@ -1,5 +1,6 @@
 package com.slf4j;
 
+import org.junit.Assert;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,8 +10,6 @@ import org.slf4j.LoggerFactory;
  * @date: 2022/3/1 21:53
  */
 public class SLF4JDemo {
-    Logger logger = LoggerFactory.getLogger(SLF4JDemo.class);
-
     /*
         入门案例
             SLF4J对日志级别的划分
@@ -20,6 +19,7 @@ public class SLF4JDemo {
      */
     @Test
     public void Test01() {
+        Logger logger = LoggerFactory.getLogger(SLF4JDemo.class);
         logger.trace("trace");
         logger.debug("debug");
         logger.info("info");
@@ -33,6 +33,7 @@ public class SLF4JDemo {
         */
     @Test
     public void Test02() {
+        Logger logger = LoggerFactory.getLogger(SLF4JDemo.class);
         String name = "猫羽雫";
         logger.info("角色名字为:{}", name);
     }
@@ -42,6 +43,7 @@ public class SLF4JDemo {
      */
     @Test
     public void Test03(){
+        Logger logger = LoggerFactory.getLogger(SLF4JDemo.class);
         try {
             Class<?> aClass = Class.forName("aaa");
         } catch (ClassNotFoundException e) {
@@ -56,6 +58,7 @@ public class SLF4JDemo {
      */
     @Test
     public void Test04(){
+        Logger logger = LoggerFactory.getLogger(SLF4JDemo.class);
         /**
          * 绑定了logback
          *  Actual binding is of type [org.slf4j.impl.SimpleLoggerFactory]
@@ -81,6 +84,7 @@ public class SLF4JDemo {
      */
     @Test
     public void Test05(){
+        Logger logger = LoggerFactory.getLogger(SLF4JDemo.class);
         try {
             Class<?> aClass = Class.forName("aaa");
         } catch (ClassNotFoundException e) {
@@ -101,10 +105,11 @@ public class SLF4JDemo {
 
         使用了log4j框架，日志信息没有被打印出来，但是提示显示使用了log4j框架
         提示没有使用  appenders 来进行加载，需要在日志执行前进行加载操作（初始化）
-
+        如果没有配置文件，会爆红显示没有log4j的配置文件，如果有log4j.properties就正常显示配置文件格式的日志
      */
     @Test
     public void Test06(){
+        Logger logger = LoggerFactory.getLogger(SLF4JDemo.class);
         logger.trace("trace");
         logger.debug("debug");
         logger.info("info");
@@ -112,6 +117,24 @@ public class SLF4JDemo {
         logger.error("error");
     }
 
+    /*
+        SLF4J整合JUL(JDK14)
 
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-jdk14</artifactId>
+            <version>1.7.25</version>
+            <scope>test</scope>
+        </dependency>
+     */
+    @Test
+    public void Test07(){
+        Logger logger = LoggerFactory.getLogger(SLF4JDemo.class);
+        logger.trace("trace");
+        logger.debug("debug");
+        logger.info("info");
+        logger.warn("warn");
+        logger.error("error");
+    }
 
 }
