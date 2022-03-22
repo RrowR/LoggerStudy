@@ -14,6 +14,7 @@
         <module>LOG4J_STUDY</module>
         <module>SLF4J_REFACTORY</module>
         <module>LOG4J2</module>
+        <module>LOG4J2_SLF4J</module>
     </modules>
 
     <dependencies>
