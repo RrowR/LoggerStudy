@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Configuration>
+
+    <!-- 配置属性 -->
+    <property name="pattern" value="[%-5level] %d{yyyy-MM-dd HH:mm:ss:SSS} %c %M %L %thread %m%n"></property>
+    <!-- 配置控制台appender -->
+    <appender name="consoleAppender" class="ch.qos.logback.core.ConsoleAppender">
+        <!-- 设置显示输出类型 -->
+        <target>
+            System.err
+        </target>
+        <!-- 配置日志输出格式
+            手动配置格式的方式
+            直接引入上述的通用属性即可
+         -->
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <!-- 类似el表达式将上面的格式引入下来 -->
+            <pattern>${pattern}</pattern>
+        </encoder>
+    </appender>
+
+    <!--
+        日志记录器
+        首先要配置root logger，然后在root根logger下来引入appender
+     -->
+    <root level="ALL">
+        <!-- 引入appender -->
+        <appender-ref ref="consoleAppender"></appender-ref>
+    </root>
+
+</Configuration>
