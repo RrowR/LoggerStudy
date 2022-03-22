@@ -3,6 +3,8 @@
 
     <!-- 配置属性 -->
     <property name="pattern" value="[%-5level] %d{yyyy-MM-dd HH:mm:ss:SSS} %c %M %L %thread %m%n"></property>
+    <property name="pattern1" value="[%-5level]%d{yyyy-MM-ddHH:mm:ss:SSS}%c%M%L%thread%m%n"></property>
+    <property name="logDir" value="F://logback"></property>
     <!-- 配置控制台appender -->
     <appender name="consoleAppender" class="ch.qos.logback.core.ConsoleAppender">
         <!-- 设置显示输出类型 -->
@@ -19,13 +21,74 @@
         </encoder>
     </appender>
 
+    <appender name="fileAppender" class="ch.qos.logback.core.FileAppender">
+        <!-- 引入文件位置 -->
+        <file>${logDir}/logback.log</file>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>${pattern}</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="htmlAppender" class="ch.qos.logback.core.FileAppender">
+        <!-- 引入文件位置 -->
+        <file>${logDir}/logback.html</file>
+        <encoder class="ch.qos.logback.core.encoder.LayoutWrappingEncoder">
+            <layout class="ch.qos.logback.classic.html.HTMLLayout">
+                <pattern>${pattern1}</pattern>
+            </layout>
+        </encoder>
+    </appender>
+
+    <appender name="rollingFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>${pattern}</pattern>
+        </encoder>
+        <file>${logDir}/roll_logback.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <!-- 按照时间和压缩格式声明文件名 压缩格式gz 按秒磁盘都来不及 -->
+            <fileNamePattern>${logDir}/roll.%d{yyyy-MM-dd}.log%i.gz</fileNamePattern>
+            <!-- 按照文件大小来进行拆分 -->
+            <maxFileSize>1KB</maxFileSize>
+        </rollingPolicy>
+    </appender>
+
+    <appender name="consoleFilterAppender" class="ch.qos.logback.core.ConsoleAppender">
+        <target>
+            System.err
+        </target>
+
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>${pattern}</pattern>
+        </encoder>
+
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <!-- 设置日志的输出级别 -->
+            <level>ERROR</level>
+            <!-- 高于level中的则打印 -->
+            <onMatch>ACCEPT</onMatch>
+            <!-- 否则则拒绝 -->
+            <onMismatch>DENY</onMismatch>
+        </filter>
+    </appender>
+
+    <!-- 异步日志 -->
+    <appender name="asyncAppender" class="ch.qos.logback.classic.AsyncAppender">
+        <appender-ref ref="consoleAppender"/>
+    </appender>
+
+    <logger name="com.logback" level="info" additivity="false">
+        <appender-ref ref="consoleAppender"></appender-ref>
+    </logger>
+
+
     <!--
         日志记录器
         首先要配置root logger，然后在root根logger下来引入appender
      -->
     <root level="ALL">
         <!-- 引入appender -->
-        <appender-ref ref="consoleAppender"></appender-ref>
+<!--        <appender-ref ref="asyncAppender"></appender-ref>-->
+<!--        <appender-ref ref="rollingFile"></appender-ref>-->
     </root>
 
 </Configuration>
