@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Configuration status="info" monitorInterval="1">
+
+    <properties>
+        <property name="logDir">F://log4j2</property>
+    </properties>
+
+    <Appenders>
+        <Console name="Console" target="SYSTEM_ERR">
+            <PatternLayout pattern="%r %t %d{yyyy-MM-dd HH:mm:ss:SSS} %m%n"></PatternLayout>
+        </Console>
+
+        <!-- 配置文件输出 -->
+        <File name="fileAppender" fileName="${logDir}//log4j2.log">
+            <!-- 配置文件输出格式 -->
+            <PatternLayout pattern="[%-5level] %d{yyyy-MM-dd HH:mm:ss:SSS} %c %M %L %thread %m%n"></PatternLayout>
+        </File>
+
+    </Appenders>
+
+    <Loggers>
+        <Root level="trace">
+            <!-- 配置根root -->
+            <AppenderRef ref="Console"></AppenderRef>
+            <AppenderRef ref="fileAppender"></AppenderRef>
+        </Root>
+    </Loggers>
+</Configuration>

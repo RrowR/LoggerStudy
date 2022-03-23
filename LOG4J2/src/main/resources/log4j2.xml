@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Configuration status="info" monitorInterval="5">
+    <Appenders>
+        <Console name="Console" target="SYSTEM_ERR">
+            <PatternLayout pattern="%r %t %d{yyyy-MM-dd HH:mm:ss:SSS} %m%n"></PatternLayout>
+        </Console>
+        
+    </Appenders>
+    <Loggers>
+        <Root level="info">
+            <!-- 配置根root -->
+            <AppenderRef ref="Console"></AppenderRef>
+        </Root>
+    </Loggers>
+</Configuration>
