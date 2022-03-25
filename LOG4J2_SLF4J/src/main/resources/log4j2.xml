@@ -16,13 +16,37 @@
             <PatternLayout pattern="[%-5level] %d{yyyy-MM-dd HH:mm:ss:SSS} %c %M %L %thread %m%n"></PatternLayout>
         </File>
 
+        <!-- 按照指定规则来拆分日志文件
+            fileName：日志文件得名字
+            filePattern: 日志文件拆分后文件得命名规则
+            $${data:yyyy-MM-dd}: 根据日志当天创建一个文件夹
+            rolling-%d{yyyy-MM-dd-HH-mm}-%i.log: 文件名  i 从 0开始
+         -->
+        <RollingFile name="rollingFile" fileName="${logDir}/rolling.log" filePattern="${logDir}/$${date:yyyy-MM-dd}/rollog-%d{yyyy-MM-dd-HH-mm}-%i.log">
+            <!-- 日志消息的格式 -->
+            <PatternLayout pattern="%r %t %d{yyyy-MM-dd HH:mm:ss:SSS} %m%n"></PatternLayout>
+            <!-- 配置策略 -->
+            <Policies>
+                <!-- 系统启动时，出发拆分规则，产生一个日志文件 -->
+                <OnStartupTriggeringPolicy />
+                <!-- 根据大小进行拆分 -->
+                <SizeBasedTriggeringPolicy size="10KB" />
+                <!-- 根据时间节点进行拆分 -->
+                <TimeBasedTriggeringPolicy />
+            </Policies>
+
+            <!-- 在同一目录下， 文件的个数限制，如果超出了设置的数值，则根据时间进行覆盖，新的覆盖旧的规则-->
+            <DefaultRolloverStrategy max="30"/>
+
+        </RollingFile>
+
     </Appenders>
 
     <Loggers>
         <Root level="trace">
             <!-- 配置根root -->
             <AppenderRef ref="Console"></AppenderRef>
-            <AppenderRef ref="fileAppender"></AppenderRef>
+            <AppenderRef ref="rollingFile"></AppenderRef>
         </Root>
     </Loggers>
 </Configuration>

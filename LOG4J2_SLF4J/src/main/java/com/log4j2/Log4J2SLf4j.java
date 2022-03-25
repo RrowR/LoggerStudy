@@ -13,7 +13,7 @@ public class Log4J2SLf4j {
         使用日志门面来操作log4j2
      */
     @Test
-    public void StudyLog4JAndSLf4j(){
+    public void StudyLog4JAndSLf4j() {
         Logger logger = LoggerFactory.getLogger(Log4J2SLf4j.class);
         logger.error("error");
         logger.warn("warn");
@@ -26,7 +26,7 @@ public class Log4J2SLf4j {
         写入到文件
      */
     @Test
-    public void StudyLog4JAndSLf4j2(){
+    public void StudyLog4JAndSLf4j2() {
         Logger logger = LoggerFactory.getLogger(Log4J2SLf4j.class);
         logger.error("error");
         logger.warn("warn");
@@ -34,4 +34,21 @@ public class Log4J2SLf4j {
         logger.debug("debug");
         logger.trace("trace");
     }
+
+    /*
+        滚动日志记录数据
+     */
+    @Test
+    public void rollingFile() {
+        Logger logger = LoggerFactory.getLogger(Log4J2SLf4j.class);
+        for (int i = 0; i < 2000; i++) {
+            logger.error("error");
+            logger.warn("warn");
+            logger.info("info");
+            logger.debug("debug");
+            logger.trace("trace");
+        }
+    }
+
+
 }
