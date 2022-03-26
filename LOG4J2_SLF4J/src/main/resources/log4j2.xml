@@ -6,8 +6,8 @@
     </properties>
 
     <Appenders>
-        <Console name="Console" target="SYSTEM_ERR">
-            <PatternLayout pattern="%r %t %d{yyyy-MM-dd HH:mm:ss:SSS} %m%n"></PatternLayout>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%r %t %d{yyyy-MM-dd HH:mm:ss:SSS} %c %m%n"></PatternLayout>
         </Console>
 
         <!-- 配置文件输出 -->
@@ -40,13 +40,19 @@
 
         </RollingFile>
 
+        <!-- 配置异步日志 -->
+        <Async name="asyncLog">
+            <AppenderRef ref="Console"></AppenderRef>
+        </Async>
+
     </Appenders>
 
     <Loggers>
         <Root level="trace">
             <!-- 配置根root -->
-            <AppenderRef ref="Console"></AppenderRef>
-            <AppenderRef ref="rollingFile"></AppenderRef>
+            <AppenderRef ref="asyncLog"></AppenderRef>
+<!--            <AppenderRef ref="Console"></AppenderRef>-->
+<!--            <AppenderRef ref="rollingFile"></AppenderRef>-->
         </Root>
     </Loggers>
 </Configuration>

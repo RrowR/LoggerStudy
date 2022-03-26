@@ -50,5 +50,37 @@ public class Log4J2SLf4j {
         }
     }
 
+    /*
+        异步日志的实现
+            方式1：使用AsyncAppender方式
+                -- 添加异步日志依赖
+                <dependency>
+                    <groupId>com.lmax</groupId>
+                    <artifactId>disruptor</artifactId>
+                    <version>3.3.7</version>
+                </dependency>
+
+                <Async name="asyncLog">
+                    <AppenderRef ref="Console"></AppenderRef>
+                </Async>
+
+                可以提升效率
+     */
+    @Test
+    public void asyncLog() {
+        Logger logger = LoggerFactory.getLogger(Log4J2SLf4j.class);
+        for (int i = 0; i < 100; i++) {
+            logger.error("error");
+            logger.warn("warn");
+            logger.info("info");
+            logger.debug("debug");
+            logger.trace("trace");
+        }
+        // 非异步的情况下，还是处于阻塞的状态
+        for (int i = 0; i < 500; i++) {
+            System.out.println("我是system.out");
+        }
+    }
+
 
 }
