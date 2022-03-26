@@ -41,17 +41,28 @@
         </RollingFile>
 
         <!-- 配置异步日志 -->
-        <Async name="asyncLog">
-            <AppenderRef ref="Console"></AppenderRef>
-        </Async>
+<!--        <Async name="asyncLog">-->
+<!--            <AppenderRef ref="Console"></AppenderRef>-->
+<!--        </Async>-->
 
     </Appenders>
 
     <Loggers>
+
+        <!-- 自定义Logger，让自定义的Logger为异步的logger
+            includeLocation="false" 去除日志中的行号信息，行号信息非常影响日志记录的效率(生产中不加这个行号)，严重的时候比同步还低
+            additivity="false"  不继承RootLogger
+         -->
+        <AsyncLogger name="com.log4j2" level="trace" includeLocation="false" additivity="false">
+            <!-- 将控制台的输出设置为异步打印 -->
+            <AppenderRef ref="Console"/>
+        </AsyncLogger>
+
+
         <Root level="trace">
             <!-- 配置根root -->
-            <AppenderRef ref="asyncLog"></AppenderRef>
-<!--            <AppenderRef ref="Console"></AppenderRef>-->
+<!--            <AppenderRef ref="asyncLog"></AppenderRef>-->
+            <AppenderRef ref="Console"></AppenderRef>
 <!--            <AppenderRef ref="rollingFile"></AppenderRef>-->
         </Root>
     </Loggers>

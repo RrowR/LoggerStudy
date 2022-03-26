@@ -82,5 +82,60 @@ public class Log4J2SLf4j {
         }
     }
 
+    /*
+        全局异步日志     文件名为: log4j2.component.properties
+            方式2: 使用AsyncLogger的方式
+            创建 log4j2.component.properties 文件 到resouces下 ，内容如下
+                # 全局异步日志配置
+                Log4jContextSelector=org.apache.logging.log4j.core.async.AsyncLoggerContextSelector
+            log4j2.xml 的异步配置旧可以去掉了
+     */
+    @Test
+    public void globalAsyncLog() {
+        Logger logger = LoggerFactory.getLogger(Log4J2SLf4j.class);
+        for (int i = 0; i < 100; i++) {
+            logger.error("error");
+            logger.warn("warn");
+            logger.info("info");
+            logger.debug("debug");
+            logger.trace("trace");
+        }
+        // 非异步的情况下，还是处于阻塞的状态
+        for (int i = 0; i < 500; i++) {
+            System.out.println("我是system.out");
+        }
+    }
+
+    /*
+        混合异步日志：同时使用同步和异步日志
+
+            要注意关闭全局异步日志
+        Log4J2SLf4j 类是属于  com.log4j2 包下的，所以是异步的，否则就是同步的
+        <AsyncLogger name="com.log4j2" level="trace" includeLocation="false" additivity="false">
+            <!-- 将控制台的输出设置为异步打印 -->
+            <AppenderRef ref="Console"/>
+        </AsyncLogger>
+
+        AsyncLogger 和 AsyncAppender 不要同时出现，没有这个需求，效果也不会叠加，如果同时出现，效率将以最低的 AsyncLogger 为主
+
+        AsyncLogger的全局异步和混合异步也不要同时出现        效果也不会叠加，没有这个需求的话
+
+     */
+    @Test
+    public void mixedAsyncLog(){
+        Logger logger = LoggerFactory.getLogger(Log4J2SLf4j.class);
+        for (int i = 0; i < 1000; i++) {
+            logger.error("error");
+            logger.warn("warn");
+            logger.info("info");
+            logger.debug("debug");
+            logger.trace("trace");
+        }
+        // 非异步的情况下，还是处于阻塞的状态
+        for (int i = 0; i < 500; i++) {
+            System.out.println("我是system.out");
+        }
+    }
+
 
 }
