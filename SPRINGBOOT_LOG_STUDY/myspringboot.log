@@ -1,0 +1,11 @@
+2022-03-27 16:09:58.337  INFO 13568 --- [main] c.s.study.StudyApplicationTests          : Starting StudyApplicationTests on DESKTOP-B11A9GN with PID 13568 (started by atlan in C:\Users\atlan\IdeaProjects\LoggerStudy\SPRINGBOOT_LOG_STUDY)
+2022-03-27 16:09:58.339 DEBUG 13568 --- [main] c.s.study.StudyApplicationTests          : Running with Spring Boot v2.3.7.RELEASE, Spring v5.2.12.RELEASE
+2022-03-27 16:09:58.340  INFO 13568 --- [main] c.s.study.StudyApplicationTests          : No active profile set, falling back to default profiles: default
+2022-03-27 16:09:59.675  INFO 13568 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2022-03-27 16:10:00.015  INFO 13568 --- [main] c.s.study.StudyApplicationTests          : Started StudyApplicationTests in 2.07 seconds (JVM running for 3.53)
+2022-03-27 16:10:00.265 TRACE 13568 --- [main] c.s.study.StudyApplicationTests          : trace
+2022-03-27 16:10:00.266 DEBUG 13568 --- [main] c.s.study.StudyApplicationTests          : debug
+2022-03-27 16:10:00.266  INFO 13568 --- [main] c.s.study.StudyApplicationTests          : info
+2022-03-27 16:10:00.266  WARN 13568 --- [main] c.s.study.StudyApplicationTests          : warn
+2022-03-27 16:10:00.266 ERROR 13568 --- [main] c.s.study.StudyApplicationTests          : error
+2022-03-27 16:10:00.295  INFO 13568 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'

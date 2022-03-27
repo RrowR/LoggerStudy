@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Configuration>
+
+    <!-- 配置属性 -->
+    <property name="pattern" value="[%-5level] %d{yyyy-MM-dd HH:mm:ss:SSS} %c %M %L %thread %m%n"></property>
+    <property name="pattern1" value="[%-5level]%d{yyyy-MM-ddHH:mm:ss:SSS}%c%M%L%thread%m%n"></property>
+    <property name="logDir" value="F://logback"></property>
+    <!-- 配置控制台appender -->
+    <appender name="rolling" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <!-- 类似el表达式将上面的格式引入下来 -->
+            <pattern>${pattern}</pattern>
+        </encoder>
+        <file>${logDir}/roll_logback.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <!-- 按照时间和压缩格式声明文件名 压缩格式gz 按秒磁盘都来不及 -->
+            <fileNamePattern>${logDir}/roll.%d{yyyy-MM-dd}.log%i.gz</fileNamePattern>
+            <!-- 按照文件大小来进行拆分 -->
+            <maxFileSize>1KB</maxFileSize>
+        </rollingPolicy>
+    </appender>
+
+    <logger name="com.springbootlog.study" level="info" additivity="false">
+        <appender-ref ref="rolling"></appender-ref>
+    </logger>
+
+</Configuration>
