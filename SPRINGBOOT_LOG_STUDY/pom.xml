@@ -5,7 +5,7 @@
     <groupId>com.springbootlog</groupId>
     <artifactId>study</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>study</name>
+    <name>SPRINGBOOT_LOG_STUDY</name>
     <description>使用springboot来记录日志</description>
 
     <properties>

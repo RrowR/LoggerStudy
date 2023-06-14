@@ -16,6 +16,7 @@
         <module>LOG4J2</module>
         <module>LOG4J2_SLF4J</module>
         <module>LOGBACK</module>
+        <module>SpringBootLog4j2DynamicLog</module>
     </modules>
 
     <dependencies>
